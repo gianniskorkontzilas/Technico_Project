@@ -36,14 +36,14 @@ public class PropertyController {
     @PutMapping("/{propertyNumber}/update")
     public Property update(@PathVariable("propertyNumber") String propertyNumber,@RequestBody Property property )
     {
-        return PropertyService.updateProperty(propertyNumber,property);
+        return propertyService.updateProperty(propertyNumber,property);
     }
 
 
     //Delete property
     @DeleteMapping("/{propertyNumber}/delete" )
     public boolean delete (@PathVariable("propertyNumber") String propertyNumber){
-        return PropertyService.deleteProperty(propertyNumber);
+        return propertyService.deleteProperty(propertyNumber);
     }
 
 }
