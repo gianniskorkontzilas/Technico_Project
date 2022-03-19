@@ -76,18 +76,17 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public Owner updateOwner(String vatNumber, Owner updateOwner) {
 
-        Optional<Owner> owner = ownerRepository.findById(vatNumber);
-        if (owner.isPresent()) {
-            Owner owner1 = owner.get();
-            owner1.setAddress(updateOwner.getAddress());
-            owner1.setEmail(updateOwner.getEmail());
-            owner1.setFirstName(updateOwner.getFirstName());
-            owner1.setLastName(updateOwner.getLastName());
-            owner1.setPassword(updateOwner.getPassword());
-            owner1.setPhoneNumber(updateOwner.getPhoneNumber());
-            owner1.setVatNumber(updateOwner.getVatNumber());
-            owner1.setUsername(updateOwner.getUsername());
-            return ownerRepository.save(owner1);
+        Optional<Owner> ownerDb = ownerRepository.findById(vatNumber);
+        if (ownerDb.isPresent()) {
+            ownerDb.get().setAddress(updateOwner.getAddress());
+            ownerDb.get().setEmail(updateOwner.getEmail());
+            ownerDb.get().setFirstName(updateOwner.getFirstName());
+            ownerDb.get().setLastName(updateOwner.getLastName());
+            ownerDb.get().setPassword(updateOwner.getPassword());
+            ownerDb.get().setPhoneNumber(updateOwner.getPhoneNumber());
+            ownerDb.get().setVatNumber(updateOwner.getVatNumber());
+            ownerDb.get().setUsername(updateOwner.getUsername());
+            return ownerRepository.save(ownerDb.get());
         } else {
             return null;
         }
