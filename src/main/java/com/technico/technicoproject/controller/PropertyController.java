@@ -1,4 +1,4 @@
 package com.technico.technicoproject.controller;
 
-public class PropertyContoller {
+public class PropertyController {
 }
