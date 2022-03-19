@@ -1,5 +1,6 @@
 package com.technico.technicoproject.service;
 
+import com.technico.technicoproject.dto.PropertyDto;
 import com.technico.technicoproject.model.Owner;
 import com.technico.technicoproject.model.Property;
 import com.technico.technicoproject.repository.OwnerRepository;
@@ -27,11 +28,14 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public List<Property> readPropertyByVatNumber(String vatNumber) {
+    public List<PropertyDto> readPropertyByVatNumber(String vatNumber) {
         Optional<Owner> ownerOpt = ownerRepository.findById(vatNumber);
         if(ownerOpt.isEmpty()) return null;
-
-        return ownerOpt.get().getProperties();
+        return ownerOpt.get().getProperties().stream().map(propertydto -> new PropertyDto(
+                propertydto.getPropertyNumber(),
+                propertydto.getAddress(),
+                propertydto.getConstructionYear(),
+                propertydto.getPropertyType())).toList();
     }
 
     @Override
