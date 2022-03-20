@@ -1,5 +1,6 @@
 package com.technico.technicoproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.technico.technicoproject.enumeration.PropertyType;
 import lombok.Data;
 
@@ -14,6 +15,8 @@ public class Property {
     private String address;
     private String constructionYear;
     private PropertyType propertyType;
+    private String ownerVat;
+    @JsonIgnore
     @ManyToOne
     private Owner owner;
 }

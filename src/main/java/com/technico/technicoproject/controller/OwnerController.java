@@ -21,7 +21,7 @@ public class OwnerController {
         return ownerService.readOwners();
     }
 
-    @GetMapping("vat/{ownerVatNumber}")
+    @GetMapping("{ownerVatNumber}")
     public OwnerDto findByVat(@PathVariable ("ownerVatNumber") String ownerVat){
         return ownerService.readOwnerByVatNumber(ownerVat);
     }
@@ -31,13 +31,13 @@ public class OwnerController {
         return ownerService.readOwnerByEmail(ownerEmail);
     }
 
-    @PutMapping("{vatNumber}/update")
-    public Owner update (@PathVariable("vatNumber")String vatNumber , @RequestBody Owner owner){
+    @PutMapping("update/{vatNumber}")
+    public Owner update(@PathVariable("vatNumber")String vatNumber , @RequestBody Owner owner){
         return ownerService.updateOwner(vatNumber,owner);
     }
 
-    @DeleteMapping("{vatNumber}/delete")
-    public boolean delete (@PathVariable("vatNumber")String vatNumber){
+    @DeleteMapping("delete/{vatNumber}")
+    public boolean delete(@PathVariable("vatNumber")String vatNumber){
         return ownerService.deleteOwner(vatNumber);
     }
 

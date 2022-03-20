@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "63a99c32-2235-471b-8b83-47203b8305f3",
+		"name": "TechnicoProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Owner",
+			"item": [
+				{
+					"name": "Create owner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vatNumber\": \"190228838\",\r\n    \"firstName\": \"Lampros\",\r\n    \"lastName\": \"Petridis\",\r\n    \"address\": \"Athinas 33, Korydallos 18120\",\r\n    \"phoneNumber\": \"6957667788\",\r\n    \"email\": \"lamproukosss98@gmail.com\",\r\n    \"username\": \"lampross98\",\r\n    \"password\": \"passw0rd1239\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1005/owner/create",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"owner",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find owner by email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/owner/email/lamproukosss98@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"owner",
+								"email",
+								"lamproukosss98@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find owner by VAT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/owner/190228838",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"owner",
+								"190228838"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update owner",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vatNumber\": \"190228838\",\r\n    \"firstName\": \"Lampros\",\r\n    \"lastName\": \"Petridis\",\r\n    \"address\": \"Athinas 21, Korydallos 18120\",\r\n    \"phoneNumber\": \"6969420658\",\r\n    \"email\": \"lamproukosss98@gmail.com\",\r\n    \"username\": \"lampros98\",\r\n    \"password\": \"passW0rd9648\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1005/owner/update/190228838",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"owner",
+								"update",
+								"190228838"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete owner",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/owner/delete/190228838",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"owner",
+								"delete",
+								"190228838"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Property",
+			"item": [
+				{
+					"name": "Create property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"propertyNumber\": \"13828498\",\r\n    \"address\": \"Agiou Georgiou 45, Korydallos 18120\",\r\n    \"constructionYear\": \"1993\",\r\n    \"propertyType\": 2,\r\n    \"ownerVat\" : \"190228838\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1005/property/create",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"property",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find property by propertyNumber",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/property/13828498",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"property",
+								"13828498"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find property by VAT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/property/vat/190228838",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"property",
+								"vat",
+								"190228838"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update property",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"propertyNumber\": \"13828498\",\r\n    \"address\": \"Agiou Georgiou 45, Korydallos 18120\",\r\n    \"constructionYear\": \"1992\",\r\n    \"propertyType\": 2,\r\n    \"ownerVat\" : \"190228838\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1005/property/update/13828498",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"property",
+								"update",
+								"13828498"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete property",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/property/delete/13828498",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"property",
+								"delete",
+								"13828498"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Check DB connection",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:1005",
+					"host": [
+						"localhost"
+					],
+					"port": "1005"
+				}
+			},
+			"response": []
+		}
+	]
+}

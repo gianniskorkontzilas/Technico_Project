@@ -31,12 +31,15 @@ public class PropertyServiceImpl implements PropertyService {
     public List<PropertyDto> readPropertyByVatNumber(String vatNumber) {
         Optional<Owner> ownerOpt = ownerRepository.findById(vatNumber);
         if(ownerOpt.isEmpty()) return null;
-        return ownerOpt.get().getProperties().stream().map(propertydto -> new PropertyDto(
+        List<Property> properties = propertyRepository.getPropertiesFromOwner(vatNumber);
+        return properties.stream().map(propertydto -> new PropertyDto(
                 propertydto.getPropertyNumber(),
                 propertydto.getAddress(),
                 propertydto.getConstructionYear(),
                 propertydto.getPropertyType())).toList();
+
     }
+
 
     @Override
     public Property updateProperty(String propertyNumber, Property property) {
