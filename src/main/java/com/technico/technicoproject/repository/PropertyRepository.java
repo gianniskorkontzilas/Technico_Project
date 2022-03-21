@@ -10,5 +10,6 @@ public interface PropertyRepository extends JpaRepository<Property, String> {
 
     @Query( value ="SELECT pr FROM Property pr WHERE pr.ownerVat = :vatNumber")
     List<Property> getPropertiesFromOwner(String vatNumber);
-
+    boolean existsPropertyByOwnerVat(String vatNumber);
+    Property findPropertyByAddress(String addressProperty);
 }
