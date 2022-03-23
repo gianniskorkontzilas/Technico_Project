@@ -1,4 +1,6 @@
 package com.technico.technicoproject.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.technico.technicoproject.enumeration.RepairStatus;
 import com.technico.technicoproject.enumeration.RepairType;
 import lombok.Data;
@@ -14,13 +16,17 @@ public class Repair {
     private Long caseId;
     private LocalDate dateOfRegistration;
     private LocalDate dateOfCompletion;
-    @ManyToOne
-    private Property property;
+    @JsonInclude
+    @Transient
+    private String address;
+    private String vatNumber;
     private RepairStatus repairStatus;
     private RepairType typeOfRepair;
     private BigDecimal cost;
-    @ManyToOne
-    private Owner owner;
     private String description;
+
+    @JsonIgnore
+    @ManyToOne
+    private Property property;
 }
 
