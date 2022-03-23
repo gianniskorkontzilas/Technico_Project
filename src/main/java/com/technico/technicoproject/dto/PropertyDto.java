@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class PropertyDto {
     private String propertyNumber;
     private String address;
+    private String vatNumber;
     private String constructionYear;
     private PropertyType propertyType;
 }
