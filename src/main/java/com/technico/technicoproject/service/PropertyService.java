@@ -8,8 +8,12 @@ import java.util.List;
 
 public interface PropertyService {
     ResponseResult<PropertyDto> createProperty(Property property);
+
     ResponseResult<PropertyDto> readPropertyByPropertyNumber(String propertyNumber);
+
     ResponseResult<List<PropertyDto>> readPropertyByVatNumber(String vatNumber);
-    ResponseResult<PropertyDto> updateProperty(String propertyNumber , Property property);
+
+    ResponseResult<PropertyDto> updateProperty(String propertyNumber, Property property);
+
     ResponseResult<Boolean> deleteProperty(String propertyNumber);
 }

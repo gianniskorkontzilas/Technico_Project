@@ -1,10 +1,15 @@
 package com.technico.technicoproject.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import javax.persistence.*;
-import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+/**
+ * This is the Owner Model
+ */
 @Data
 @Entity
 @Table(name = "Owners")
@@ -18,8 +23,4 @@ public class Owner {
     private String email;
     private String username;
     private String password;
-
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "owner")
-//    private List<Property> properties;
 }

@@ -1,12 +1,19 @@
 package com.technico.technicoproject.model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.technico.technicoproject.enumeration.RepairStatus;
 import com.technico.technicoproject.enumeration.RepairType;
 import lombok.Data;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+
+/**
+ * This is the Repair Model
+ */
 @Entity
 @Data
 @Table(name = "Repairs")
@@ -24,7 +31,6 @@ public class Repair {
     private RepairType typeOfRepair;
     private BigDecimal cost;
     private String description;
-
     @JsonIgnore
     @ManyToOne
     private Property property;
