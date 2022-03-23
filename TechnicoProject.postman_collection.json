@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "63a99c32-2235-471b-8b83-47203b8305f3",
+		"_postman_id": "66a9fbde-8bd5-4465-9e92-5d5445685625",
 		"name": "TechnicoProject",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"vatNumber\": \"190228838\",\r\n    \"firstName\": \"Lampros\",\r\n    \"lastName\": \"Petridis\",\r\n    \"address\": \"Athinas 33, Korydallos 18120\",\r\n    \"phoneNumber\": \"6957667788\",\r\n    \"email\": \"lamproukosss98@gmail.com\",\r\n    \"username\": \"lampross98\",\r\n    \"password\": \"passw0rd1239\"\r\n}",
+							"raw": "{\r\n    \"vatNumber\": \"190494932\",\r\n    \"firstName\": \"Giannis\",\r\n    \"lastName\": \"Nikolaou\",\r\n    \"address\": \"Athinas 33, Korydallos 18120\",\r\n    \"phoneNumber\": \"6957667788\",\r\n    \"email\": \"giannis9@gmail.com\",\r\n    \"username\": \"giannis98\",\r\n    \"password\": \"passw0rd1239\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -37,12 +37,31 @@
 					"response": []
 				},
 				{
+					"name": "Return all owners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/owner/owners",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"owner",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Find owner by email",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1005/owner/email/lamproukosss98@gmail.com",
+							"raw": "localhost:1005/owner/email/giannis9@gmail.com",
 							"host": [
 								"localhost"
 							],
@@ -50,7 +69,7 @@
 							"path": [
 								"owner",
 								"email",
-								"lamproukosss98@gmail.com"
+								"giannis9@gmail.com"
 							]
 						}
 					},
@@ -62,14 +81,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1005/owner/190228838",
+							"raw": "localhost:1005/owner/190494932",
 							"host": [
 								"localhost"
 							],
 							"port": "1005",
 							"path": [
 								"owner",
-								"190228838"
+								"190494932"
 							]
 						}
 					},
@@ -82,7 +101,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"vatNumber\": \"190228838\",\r\n    \"firstName\": \"Lampros\",\r\n    \"lastName\": \"Petridis\",\r\n    \"address\": \"Athinas 21, Korydallos 18120\",\r\n    \"phoneNumber\": \"6969420658\",\r\n    \"email\": \"lamproukosss98@gmail.com\",\r\n    \"username\": \"lampros98\",\r\n    \"password\": \"passW0rd9648\"\r\n}",
+							"raw": "{\r\n    \"vatNumber\": \"190494932\",\r\n    \"firstName\": \"Giannis\",\r\n    \"lastName\": \"Nikolaou\",\r\n    \"address\": \"Athinas 21, Korydallos 18120\",\r\n    \"phoneNumber\": \"6969420658\",\r\n    \"email\": \"nikola98@gmail.com\",\r\n    \"username\": \"nikolaou\",\r\n    \"password\": \"passW0rd9648\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -90,15 +109,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:1005/owner/update/190228838",
+							"raw": "localhost:1005/owner/190494932",
 							"host": [
 								"localhost"
 							],
 							"port": "1005",
 							"path": [
 								"owner",
-								"update",
-								"190228838"
+								"190494932"
 							]
 						}
 					},
@@ -109,16 +127,42 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vatNumber\": \"190228838\",\r\n    \"firstName\": \"Lampros\",\r\n    \"lastName\": \"Petridis\",\r\n    \"address\": \"Athinas 33, Korydallos 18120\",\r\n    \"phoneNumber\": \"6957667788\",\r\n    \"email\": \"lamproukosss98@gmail.com\",\r\n    \"username\": \"lampross98\",\r\n    \"password\": \"passw0rd1239\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:1005/owner/delete/190228838",
+							"raw": "localhost:1005/owner/190494932",
 							"host": [
 								"localhost"
 							],
 							"port": "1005",
 							"path": [
 								"owner",
-								"delete",
-								"190228838"
+								"190494932"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all owners",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/owner",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"owner"
 							]
 						}
 					},
@@ -136,7 +180,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"propertyNumber\": \"13828498\",\r\n    \"address\": \"Agiou Georgiou 45, Korydallos 18120\",\r\n    \"constructionYear\": \"1993\",\r\n    \"propertyType\": 2,\r\n    \"ownerVat\" : \"190228838\"\r\n}",
+							"raw": "{\r\n    \"propertyNumber\": \"1234776\",\r\n    \"address\": \"Agiou Georgiou 47, Korydallos 18120\",\r\n    \"vatNumber\": \"190494932\",\r\n    \"constructionYear\": \"1993\",\r\n    \"propertyType\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -163,14 +207,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1005/property/13828498",
+							"raw": "localhost:1005/property/1234776",
 							"host": [
 								"localhost"
 							],
 							"port": "1005",
 							"path": [
 								"property",
-								"13828498"
+								"1234776"
 							]
 						}
 					},
@@ -182,7 +226,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:1005/property/vat/190228838",
+							"raw": "localhost:1005/property/vat/190494932",
 							"host": [
 								"localhost"
 							],
@@ -190,7 +234,7 @@
 							"path": [
 								"property",
 								"vat",
-								"190228838"
+								"190494932"
 							]
 						}
 					},
@@ -203,7 +247,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"propertyNumber\": \"13828498\",\r\n    \"address\": \"Agiou Georgiou 45, Korydallos 18120\",\r\n    \"constructionYear\": \"1992\",\r\n    \"propertyType\": 2,\r\n    \"ownerVat\" : \"190228838\"\r\n}",
+							"raw": "{\r\n    \"propertyNumber\": \"1234773\",\r\n    \"address\": \"Agiou Georgiou 45, Korydallos 18120\",\r\n    \"vatNumber\": \"190494932\",\r\n    \"constructionYear\": \"1996\",\r\n    \"propertyType\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -211,15 +255,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:1005/property/update/13828498",
+							"raw": "localhost:1005/property/1234776",
 							"host": [
 								"localhost"
 							],
 							"port": "1005",
 							"path": [
 								"property",
-								"update",
-								"13828498"
+								"1234776"
 							]
 						}
 					},
@@ -231,15 +274,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:1005/property/delete/13828498",
+							"raw": "localhost:1005/property/123476",
 							"host": [
 								"localhost"
 							],
 							"port": "1005",
 							"path": [
 								"property",
-								"delete",
-								"13828498"
+								"123476"
 							]
 						}
 					},
@@ -248,19 +290,176 @@
 			]
 		},
 		{
-			"name": "Check DB connection",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:1005",
-					"host": [
-						"localhost"
-					],
-					"port": "1005"
+			"name": "Repair",
+			"item": [
+				{
+					"name": "Create repair",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dateOfCompletion\": \"2022-04-26\",\r\n    \"address\": \"Agiou Georgiou 47, Korydallos 18120\",\r\n    \"vatNumber\": \"190494932\",\r\n    \"repairStatus\": 0,\r\n    \"typeOfRepair\": 3,\r\n    \"cost\": 300,\r\n    \"description\": \"Diaroh nerou\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1005/repair/create",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"repair",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by CaseID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/repair/1",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"repair",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by VAT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/repair/vat/190494932",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"repair",
+								"vat",
+								"190494932"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by Date",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1005/repair/date/20220323",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"repair",
+								"date",
+								"20220323"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by dates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/repair/dates/20220301/20220324",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"repair",
+								"dates",
+								"20220301",
+								"20220324"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update repair",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dateOfCompletion\": \"2022-04-30\",\r\n    \"address\": \"Agiou Georgiou 47, Korydallos 18120\",\r\n    \"vatNumber\": \"190494933\",\r\n    \"repairStatus\": 0,\r\n    \"typeOfRepair\": 3,\r\n    \"cost\": 300,\r\n    \"description\": \"Diaroh nerou\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1005/repair/1",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"repair",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete repair",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/repair/1",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"repair",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
