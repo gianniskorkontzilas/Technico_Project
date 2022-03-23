@@ -19,7 +19,7 @@ public class Owner {
     private String username;
     private String password;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "owner")
-    private List<Property> properties;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "owner")
+//    private List<Property> properties;
 }

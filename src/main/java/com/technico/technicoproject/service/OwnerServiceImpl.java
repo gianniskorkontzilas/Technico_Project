@@ -1,9 +1,11 @@
 package com.technico.technicoproject.service;
 
 import com.technico.technicoproject.dto.OwnerDto;
-import com.technico.technicoproject.exception.OwnerException;
+import com.technico.technicoproject.dto.ResponseResult;
+import com.technico.technicoproject.dto.ResponseStatus;
 import com.technico.technicoproject.model.Owner;
 import com.technico.technicoproject.repository.OwnerRepository;
+import com.technico.technicoproject.repository.PropertyRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,87 +17,108 @@ import java.util.regex.Pattern;
 @Service
 public class OwnerServiceImpl implements OwnerService {
     private OwnerRepository ownerRepository;
+    private PropertyRepository propertyRepository;
 
     @Override
-    public Owner createOwner(Owner owner) throws OwnerException {
+    public ResponseResult<Owner> createOwner(Owner owner) {
 
         boolean exists = ownerRepository.existsOwnersByVatNumber(owner.getVatNumber());
+        boolean sameEmail = ownerRepository.existsByEmail(owner.getEmail());
+        String regexPattern = "^(.+)@(\\S+)$";
+
         if (exists) {
-            throw new OwnerException("The Vat Number already exists");
-        } else {
-            String regexPattern = "^(.+)@(\\S+)$";
-            if (owner.getVatNumber().length() == 9 && Pattern.compile(regexPattern).matcher(owner.getEmail()).matches() && owner.getPhoneNumber().length() == 10)
-                return ownerRepository.save(owner);
-            else {
-
-                throw new OwnerException("Invalid data");
-            }
+            return new ResponseResult(null, ResponseStatus.OWNER_NOT_CREATED, "Owner with same VAT already exists");
         }
+        if(sameEmail){
+            return new ResponseResult(null, ResponseStatus.OWNER_NOT_CREATED, "Owner with same email already exists");
+        }
+        if(owner.getVatNumber().length() != 9){
+            return new ResponseResult(null, ResponseStatus.OWNER_NOT_CREATED, "VAT number must be equal to 9 digits");
+        }
+        if(!Pattern.compile(regexPattern).matcher(owner.getEmail()).matches()){
+            return new ResponseResult(null, ResponseStatus.OWNER_NOT_CREATED, "Invalid email format");
+        }
+        if ( owner.getPhoneNumber().length() != 10) {
+            return new ResponseResult(null, ResponseStatus.OWNER_NOT_CREATED, "Invalid phone number length");
+        }
+        try{
+            ownerRepository.save(owner);
+        }catch (Exception e){
+            return new ResponseResult(null, ResponseStatus.OWNER_NOT_CREATED, "Owner creation failed due to: " + e);
+        }
+
+        return new ResponseResult(owner, ResponseStatus.SUCCESS, "Owner created successfully");
     }
 
     @Override
-    public List<OwnerDto> readOwners() {
-        return ownerRepository.findAll().stream().map(ownerdto -> new OwnerDto(
-                ownerdto.getVatNumber(),
-                ownerdto.getFirstName(),
-                ownerdto.getLastName(),
-                ownerdto.getAddress(),
-                ownerdto.getPhoneNumber(),
-                ownerdto.getEmail(),
-                ownerdto.getUsername())).toList();
+    public ResponseResult<List<Owner>> readOwners() {
+        return new ResponseResult(ownerRepository.findAll(), ResponseStatus.SUCCESS, "Returned list of owners successfully");
     }
 
     @Override
-    public OwnerDto readOwnerByVatNumber(String ownerVatNumber) {
-        OwnerDto ownerDto = new OwnerDto();
-        Owner owner = ownerRepository.findOwnerByVatNumber(ownerVatNumber);
-        ownerDto.setFirstName(owner.getFirstName());
-        ownerDto.setEmail(owner.getEmail());
-        ownerDto.setAddress(owner.getAddress());
-        ownerDto.setUsername(owner.getUsername());
-        ownerDto.setLastName(owner.getLastName());
-        ownerDto.setPhoneNumber(owner.getPhoneNumber());
-        ownerDto.setVatNumber(owner.getVatNumber());
-        return ownerDto;
+    public ResponseResult<Owner> readOwnerByVatNumber(String vatNumber) {
+        Owner owner = ownerRepository.findOwnerByVatNumber(vatNumber);
+        if(owner==null){
+            return new ResponseResult(null, ResponseStatus.OWNER_NOT_FOUND, "Cannot find owner with VAT: "+vatNumber);
+        }else{
+            return new ResponseResult(owner, ResponseStatus.SUCCESS,"Owner found successfully");
+        }
+
     }
 
     @Override
-    public OwnerDto readOwnerByEmail(String ownerEmail) {
-        OwnerDto ownerDto = new OwnerDto();
-        Owner owner = ownerRepository.findOwnerByEmail(ownerEmail);
-        ownerDto.setFirstName(owner.getFirstName());
-        ownerDto.setEmail(owner.getEmail());
-        ownerDto.setAddress(owner.getAddress());
-        ownerDto.setUsername(owner.getUsername());
-        ownerDto.setLastName(owner.getLastName());
-        ownerDto.setPhoneNumber(owner.getPhoneNumber());
-        ownerDto.setVatNumber(owner.getVatNumber());
-        return ownerDto;
+    public ResponseResult<Owner> readOwnerByEmail(String email) {
+        Owner owner = ownerRepository.findOwnerByEmail(email);
+        if(owner==null){
+            return new ResponseResult(null, ResponseStatus.OWNER_NOT_FOUND, "Cannot find owner with "+email+"as email.");
+        }else {
+            return new ResponseResult(owner, ResponseStatus.SUCCESS,"Owner found successfully");
+        }
+
     }
 
+
     @Override
-    public Owner updateOwner(String vatNumber, Owner updateOwner) {
+    public ResponseResult<Owner> updateOwner(String vatNumber, Owner owner) {
 
         Optional<Owner> ownerDb = ownerRepository.findById(vatNumber);
         if (ownerDb.isPresent()) {
-            ownerDb.get().setAddress(updateOwner.getAddress());
-            ownerDb.get().setEmail(updateOwner.getEmail());
-            ownerDb.get().setFirstName(updateOwner.getFirstName());
-            ownerDb.get().setLastName(updateOwner.getLastName());
-            ownerDb.get().setPassword(updateOwner.getPassword());
-            ownerDb.get().setPhoneNumber(updateOwner.getPhoneNumber());
-            ownerDb.get().setVatNumber(updateOwner.getVatNumber());
-            ownerDb.get().setUsername(updateOwner.getUsername());
-            return ownerRepository.save(ownerDb.get());
+            ownerDb.get().setAddress(owner.getAddress());
+            ownerDb.get().setEmail(owner.getEmail());
+            ownerDb.get().setFirstName(owner.getFirstName());
+            ownerDb.get().setLastName(owner.getLastName());
+            ownerDb.get().setPassword(owner.getPassword());
+            ownerDb.get().setPhoneNumber(owner.getPhoneNumber());
+            ownerDb.get().setVatNumber(owner.getVatNumber());
+            ownerDb.get().setUsername(owner.getUsername());
+            ownerRepository.save(ownerDb.get());
+            return new ResponseResult(ownerDb, ResponseStatus.SUCCESS, "Successfully updated owner details.");
         } else {
-            return null;
+            return new ResponseResult(null, ResponseStatus.OWNER_NOT_UPDATED, "Update failed because owner with VAT: "+ vatNumber+" doesn't exist");
         }
 
     }
 
     @Override
-    public boolean deleteOwner(String vatNumber) {
+    public ResponseResult<Boolean> deleteOwner(String vatNumber) {
+        if(ownerRepository.findById(vatNumber)==null){
+            return new ResponseResult(false,ResponseStatus.OWNER_NOT_DELETED,"Delete operation failed because owner with VAT: "+ vatNumber+" doesn't exist");
+        }
+        if(propertyRepository.findPropertiesByOwner(ownerRepository.findOwnerByVatNumber(vatNumber)).size()!=0){
+            return new ResponseResult(false,ResponseStatus.OWNER_NOT_DELETED,"Delete operation failed because owner has properties");
+        }
+
         ownerRepository.deleteById(vatNumber);
-        return true;
+        return new ResponseResult(true,ResponseStatus.SUCCESS,"Owner details deleted successfully");
+
     }
+
+
+    @Override
+    public ResponseResult<Boolean> deleteAllOwners(){
+        ownerRepository.deleteAll();
+        return new ResponseResult(true,ResponseStatus.SUCCESS,"All owners successfully deleted");
+    }
+
+
 }
