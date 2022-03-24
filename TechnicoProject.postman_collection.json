@@ -460,6 +460,47 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "General",
+			"item": [
+				{
+					"name": "Show all data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/all",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:1005/all",
+							"host": [
+								"localhost"
+							],
+							"port": "1005",
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
